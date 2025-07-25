@@ -1,1 +1,75 @@
-<p>register works!</p>
+<form [formGroup]="RegisterForm" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-light">
+    <!-- Nom -->
+    <div class="mb-3">
+        <label class="form-label">Nom</label>
+        <input type="text" class="form-control" placeholder="Votre nom" formControlName="nom"
+            [class.is-invalid]="isSubmitted && RegisterForm.get('nom')?.invalid" />
+
+        @if (isSubmitted && RegisterForm.get('nom')?.hasError('required')) {
+        <div class="invalid-feedback">
+            Le nom est obligatoire.
+        </div>
+        }
+    </div>
+
+    <!-- Prénom -->
+    <div class="mb-3">
+        <label class="form-label">Prénom</label>
+        <input type="text" class="form-control" placeholder="Votre prénom" formControlName="prenom"
+            [class.is-invalid]="isSubmitted && RegisterForm.get('prenom')?.invalid" />
+
+        @if (isSubmitted && RegisterForm.get('prenom')?.hasError('required')) {
+        <div class="invalid-feedback">
+            Le prénom est obligatoire.
+        </div>
+        }
+    </div>
+
+    <!-- Username -->
+    <div class="mb-3">
+        <label class="form-label">Pseudo</label>
+        <input type="text" class="form-control" placeholder="Votre pseudo" formControlName="username"
+            [class.is-invalid]="isSubmitted && RegisterForm.get('username')?.invalid" />
+
+        @if (isSubmitted && RegisterForm.get('username')?.hasError('required')) {
+        <div class="invalid-feedback">
+            Le pseudo est obligatoire.
+        </div>
+        }
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" placeholder="Votre email" formControlName="email"
+            [class.is-invalid]="isSubmitted && RegisterForm.get('email')?.invalid" />
+
+        @if (isSubmitted && RegisterForm.get('email')?.hasError('required')) {
+        <div class="invalid-feedback">
+            L'email est obligatoire.
+        </div>
+        }
+        @if (isSubmitted && RegisterForm.get('email')?.hasError('email')) {
+        <div class="invalid-feedback">
+            L'adresse email doit être valide.
+        </div>
+        }
+    </div>
+
+    <!-- Date de naissance -->
+    <div class="mb-3">
+        <label class="form-label">Date de naissance</label>
+        <input type="date" class="form-control" formControlName="dateDeNaissance"
+            [class.is-invalid]="isSubmitted && RegisterForm.get('dateDeNaissance')?.invalid" />
+
+        @if (isSubmitted && RegisterForm.get('dateDeNaissance')?.hasError('required')) {
+        <div class="invalid-feedback">
+            La date de naissance est obligatoire.
+        </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">
+        S'inscrire
+    </button>
+</form>
